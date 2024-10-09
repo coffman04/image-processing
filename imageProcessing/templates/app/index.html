@@ -6,12 +6,11 @@
 <h1> Welcome to Image Processing </h1>
 <div class="buttonContainer">
     <button class="mainButton" onclick="importButton()">Upload Image for Processing</button>
-    <button class="mainButton" onclick="downloadButton()">Download Processed Image From Storage</button>
 </div>
 
 <dialog id="importDialog">
     <button class="closeButton" onclick="closeImportDialog()">X</button>
-    <form action="uploadFile" method="post">
+    <form action="uploadFile" method="POST">
         <label for="uploadFile">Image for Processing: </label>
         <input id="uploadFile" type="file" name="your_name" value="{{ imagePath }}">
         <div class="buttonContainer">

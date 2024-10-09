@@ -1,2 +1,2 @@
 # image-processing
-Image processing application integrated with AWS
+Image processing application built with django and integrated with AWS

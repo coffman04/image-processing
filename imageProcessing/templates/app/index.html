@@ -11,10 +11,11 @@
 <dialog id="importDialog">
     <button class="closeButton" onclick="closeImportDialog()">X</button>
     <form action="uploadFile" method="POST">
+        {% csrf_token %} 
         <label for="uploadFile">Image for Processing: </label>
         <input id="uploadFile" type="file" name="your_name" value="{{ imagePath }}">
         <div class="buttonContainer">
-            <input class="filterButton" type="submit" value="Greyscale" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Grayscale" onclick="closeImportDialog()">
             <input class="filterButton" type="submit" value="Blur" onclick="closeImportDialog()">
             <input class="filterButton" type="submit" value="Sepia" onclick="closeImportDialog()">
             <input class="filterButton" type="submit" value="Poster" onclick="closeImportDialog()">

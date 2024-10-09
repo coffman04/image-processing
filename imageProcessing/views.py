@@ -10,12 +10,16 @@ from .models import ImageList
 # Create your views here.
 def index (request):
     if(request.method=="POST"):
-        print("postrequestmade")
-        # form = ImageUpload(request.POST)
-        # if form.is_valid():
-        #     image = form.save()
-        #     process(image.id)
-        #     redirect("downloadFilter", image.id)
+        form = ImageUpload(request.POST, request.FILES)
+        if form.is_valid():
+            print("valid")
+            #image = form.save()
+            #process(image.id)
+            return redirect("download")
+            # return redirect("download", image.id)
+        else:
+            #change this to a redirect to some error page
+            print("error")
 
     return render(request, 'app/index.html')
 
@@ -37,5 +41,7 @@ def process(id):
     print("end of process")
     #if form.is_valid():
     #    form.save()
-    
+
+def download(request):
+    return render(request, 'app/download.html')
 

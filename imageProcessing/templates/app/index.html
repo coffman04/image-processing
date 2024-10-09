@@ -10,17 +10,17 @@
 
 <dialog id="importDialog">
     <button class="closeButton" onclick="closeImportDialog()">X</button>
-    <form action="uploadFile" method="POST">
-        {% csrf_token %} 
-        <label for="uploadFile">Image for Processing: </label>
-        <input id="uploadFile" type="file" name="your_name" value="{{ imagePath }}">
+    <form action="uploadFile" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="preprocessingFile">Image for Processing: </label>
+        <input id="preprocessingFile" type="file" name="preprocessingFile" required>
         <div class="buttonContainer">
-            <input class="filterButton" type="submit" value="Grayscale" onclick="closeImportDialog()">
-            <input class="filterButton" type="submit" value="Blur" onclick="closeImportDialog()">
-            <input class="filterButton" type="submit" value="Sepia" onclick="closeImportDialog()">
-            <input class="filterButton" type="submit" value="Poster" onclick="closeImportDialog()">
-            <input class="filterButton" type="submit" value="Edge" onclick="closeImportDialog()">
-            <input class="filterButton" type="submit" value="Solar" onclick="closeImportDialog()">
-        <div>
+            <input class="filterButton" type="submit" name="filterName" value="Grayscale">
+            <input class="filterButton" type="submit" name="filterName" value="Blur">
+            <input class="filterButton" type="submit" name="filterName" value="Sepia">
+            <input class="filterButton" type="submit" name="filterName" value="Poster">
+            <input class="filterButton" type="submit" name="filterName" value="Edge">
+            <input class="filterButton" type="submit" name="filterName" value="Solar">
+        </div>
     </form>
 </dialog>

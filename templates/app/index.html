@@ -1,0 +1,26 @@
+{% load static %}
+<script src="{% static 'js/functions.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+<h1> Welcome to Image Processing </h1>
+<div class="buttonContainer">
+    <button class="mainButton" onclick="importButton()">Upload Image for Processing</button>
+    <button class="mainButton" onclick="downloadButton()">Download Processed Image From Storage</button>
+</div>
+
+<dialog id="importDialog">
+    <button class="closeButton" onclick="closeImportDialog()">X</button>
+    <form action="uploadFile" method="post">
+        <label for="uploadFile">Image for Processing: </label>
+        <input id="uploadFile" type="file" name="your_name" value="{{ imagePath }}">
+        <div class="buttonContainer">
+            <input class="filterButton" type="submit" value="Greyscale" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Blur" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Sepia" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Poster" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Edge" onclick="closeImportDialog()">
+            <input class="filterButton" type="submit" value="Solar" onclick="closeImportDialog()">
+        <div>
+    </form>
+</dialog>

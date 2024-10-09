@@ -1,0 +1,34 @@
+
+h1 {
+    padding:20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;            
+    justify-content: center;      
+    align-items: center;          
+    margin-top: 20px;             
+}
+
+.mainButton{
+    padding:5px;
+    margin-top:20px;
+    margin-left:50px;
+    margin-right:50px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    min-width:500px;
+    min-height: 50px;
+}
+
+.filterButton{
+    margin:5px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.closeButton{
+    float: right;
+}

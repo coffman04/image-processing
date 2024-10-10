@@ -7,10 +7,5 @@ class ImageUpload(forms.ModelForm):
         model = ImageList
         fields = ["preprocessingFile", "filterName"]
 
-
-class FilterUpload(forms.ModelForm):
-    class Meta:
-        model = ImageList
-        fields = ["filteredFile"]
     
     

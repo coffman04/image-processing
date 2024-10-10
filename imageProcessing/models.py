@@ -10,4 +10,7 @@ class ImageList(models.Model):
     filteredFile = models.ImageField(
         upload_to="filtered/"
     )
+    
+    def __str__(self):
+        return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
 

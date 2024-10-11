@@ -15,4 +15,5 @@ class ImageList(models.Model):
     
     def __str__(self):
         return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
+    
 

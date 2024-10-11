@@ -1,1 +1,11 @@
-<h1> You have reached the download page</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/download.css' %}">
+
+<h1>Download Your Image Here</h1>
+<div>
+    <img src="{{ image.filteredFile.url }}" alt="filteredImage"/>
+</div>
+<div class="buttonContainer">
+    <button class="mainButton" onclick="">Download</button>
+    <button class="mainButton" onclick="location.href = ''">Home</button>
+</div>

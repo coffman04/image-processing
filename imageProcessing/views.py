@@ -16,8 +16,7 @@ def index (request):
         if form.is_valid():
             image = form.save()
             process(image.id)
-            return redirect("download")
-            # return redirect("download", image.id)
+            return redirect("download", image_id=image.id)
         else:
             #change this to a redirect to some error page
             print("error")
@@ -60,6 +59,7 @@ def process(id):
     modifiedImg.close()
     
 
-def download(request):
-    return render(request, 'app/download.html')
+def download(request, image_id):
+    image = ImageList.objects.get(id=image_id)
+    return render(request, 'app/download.html', {'image' : image})
 

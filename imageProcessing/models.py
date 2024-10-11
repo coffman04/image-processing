@@ -14,8 +14,5 @@ class ImageList(models.Model):
     )
     
     def __str__(self):
-        if self.filteredFile != None:
-            return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
-        else:
-            return f"{self.preprocessingFile.path}, {self.filterName}"
+        return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
 

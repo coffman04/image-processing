@@ -38,21 +38,16 @@ def process(id):
     elif image.filterName == "Grayscale":
         modifiedImg = PIL.ImageOps.grayscale(img)
     elif image.filterName == "Poster":
+        if img.mode != "RGB":
+            img = img.convert("RGB")
         modifiedImg = PIL.ImageOps.posterize(img, 4)
     elif image.filterName == "Edge":
+        if img.mode != "RGB":
+            img = img.convert("RGB")
         modifiedImg = img.filter(filter=ImageFilter.FIND_EDGES)
-    elif image.filterName == "Sepia":
-        pixels = list(img.getdata())
-        modifiedPixels = list()
-        for pixel in pixels:
-            modifiedPixel = (0,0,0)
-            modifiedPixel[0] = pixel[0]*.393+pixel[1]*.769+pixel[2]*.189
-            modifiedPixel[1] = pixel[0]*.349+pixel[1]*.686+pixel[2]*.168
-            modifiedPixel[2] = pixel[0]*.272+pixel[1]*.534+pixel[2]*.131
-            modifiedPixels.append(modifiedPixel)
-        modifiedImg = Image.new("RGB", img.size)
-        modifiedImg.putdata(modifiedPixels)
     elif image.filterName == "Solar":
+        if img.mode != "RGB":
+            img = img.convert("RGB")
         modifiedImg = PIL.ImageOps.solarize(img, 64)
     img.close()
 

@@ -8,9 +8,14 @@ class ImageList(models.Model):
     )
     filterName = models.TextField()
     filteredFile = models.ImageField(
-        upload_to="filtered/"
+        upload_to="filtered/",
+        blank=True,
+        null=True
     )
     
     def __str__(self):
-        return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
+        if self.filteredFile != None:
+            return f"{self.preprocessingFile.path}, {self.filterName}, {self.filteredFile.path}"
+        else:
+            return f"{self.preprocessingFile.path}, {self.filterName}"
 

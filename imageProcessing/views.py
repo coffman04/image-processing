@@ -32,7 +32,9 @@ def process(id):
     modifiedImg = None
 
     if image.filterName == "Blur":
-        modifiedImg = img.filter(filter=ImageFilter.GaussianBlur)
+        if img.mode != "RGB":
+            img = img.convert("RGB")
+        modifiedImg = img.filter(ImageFilter.GaussianBlur)
     elif image.filterName == "Grayscale":
         modifiedImg = PIL.ImageOps.grayscale(img)
     elif image.filterName == "Poster":

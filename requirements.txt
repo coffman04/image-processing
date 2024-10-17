@@ -1,0 +1,7 @@
+boto3==1.35.43
+Django==5.1.1
+django-storages==1.14.4
+pillow==10.4.0
+python-decouple==3.8
+
+

@@ -2,11 +2,10 @@
 <link rel="stylesheet" href="{% static 'css/download.css' %}">
 
 <h1>Download Your Image Here</h1>
-<div>
+<div class="buttonContainer">
     <img src="{{ image.filteredFile.url }}" alt="filteredImage"/>
 </div>
 <div class="buttonContainer">
-    <button class="mainButton" onclick="">Download</button>
-    <!-- fix this !!!-->
-    <button class="mainButton" onclick="window.location = '/'">Home</button>
-</div>
+    <a class="downloadLink" href = "{{ image.filteredFile.url }}" download>Download</a>
+    <a class="downloadLink" href = "/">Home</a>
+</div> 

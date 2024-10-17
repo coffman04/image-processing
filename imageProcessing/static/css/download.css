@@ -23,8 +23,22 @@ h1 {
     min-height: 50px;
 }
 
+.downloadLink{
+    font-size:20px;
+    font-weight:bold;
+    min-width: 400px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: lightgray;
+    border:4px;
+    border-color:black;
+    text-decoration: none;
+    text-decoration-color: black;
+}
+
 img {
     max-width:75%;
+    max-height: 75%;
     margin-left:auto;
     margin-right:auto;
 }

@@ -12,18 +12,25 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # for s3 storage
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+#AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY')
+#AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_KEY')
+#AWS_STORAGE_BUCKET_NAME = config('AWS_BUCKET_NAME')
+#AWS_S3_REGION_NAME = 'YOUR_REGION'  # e.g., 'us-east-1'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q-1@co_78atn0zu#4_j-eaeiy%(6tk9z6m_@b2p7y@7n9&b0zs'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'imageProcessing'
+    'imageProcessing',
+    'storages'
 ]
 
 MIDDLEWARE = [

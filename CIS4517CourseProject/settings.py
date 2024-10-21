@@ -44,7 +44,7 @@ STORAGES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'http://18.219.230.219:8000/']
 ALLOWED_HOSTS.append(gethostbyname(gethostname()))
 print(ALLOWED_HOSTS)
 ROOT_URLCONF = 'CIS4517CourseProject.urls'

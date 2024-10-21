@@ -32,9 +32,7 @@ def process(id):
     with default_storage.open(file_name, 'rb') as file:
         img = Image.open(file)
         img.load()
-
-    imgSplitPath = os.path.splitext(image.preprocessingFile.path)
-    withinSplitFolder = os.path.split(imgSplitPath[0])[-1]
+    
     modifiedImg = None
 
     if image.filterName == "Blur":

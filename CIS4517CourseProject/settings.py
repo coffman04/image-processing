@@ -24,7 +24,10 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_BUCKET_NAME')
-AWS_S3_REGION_NAME = 'YOUR_REGION'  # e.g., 'us-east-1'
+AWS_S3_SIGNATURE_NAME = 's3v4'
+AWS_S3_REGION_NAME = 'us-east-2'  # e.g., 'us-east-1'
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

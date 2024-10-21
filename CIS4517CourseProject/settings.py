@@ -44,7 +44,7 @@ STORAGES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '18.219.230.219']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', config('AWS_EC2_IP')]
 ROOT_URLCONF = 'CIS4517CourseProject.urls'
 
 # Quick-start development settings - unsuitable for production
@@ -104,14 +104,21 @@ WSGI_APPLICATION = 'CIS4517CourseProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'imageProcessingDB',
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_ENDPOINT'),
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'imageProcessingDB',
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_ENDPOINT'),
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

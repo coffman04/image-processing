@@ -1,10 +1,12 @@
+from io import BytesIO
 import os
 import PIL
 import PIL.Image
 import PIL.ImageOps
 from PIL import Image, ImageFilter
 from django.shortcuts import redirect, render
-
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from CIS4517CourseProject.settings import MEDIA_ROOT
 from .forms import ImageUpload
 from .models import ImageList
@@ -25,7 +27,12 @@ def index (request):
 
 def process(id):
     image = ImageList.objects.get(id = id)
-    img = Image.open(image.preprocessingFile.path)
+    file_name = image.preprocessingFile.name  # Get the file name
+
+    with default_storage.open(file_name, 'rb') as file:
+        img = Image.open(file)
+        img.load()
+
     imgSplitPath = os.path.splitext(image.preprocessingFile.path)
     withinSplitFolder = os.path.split(imgSplitPath[0])[-1]
     modifiedImg = None
@@ -50,10 +57,18 @@ def process(id):
         modifiedImg = PIL.ImageOps.solarize(img, 64)
     img.close()
 
-    saveFilePath = os.path.join(MEDIA_ROOT, 'filtered', withinSplitFolder + "_" + image.filterName + imgSplitPath[1])
-    modifiedImg.save(saveFilePath)
+    image_io = BytesIO()
 
-    image.filteredFile = saveFilePath
+    original_format = img.format if img.format else 'JPEG'  
+
+    modifiedImg.save(image_io, format=original_format)
+    image_io.seek(0)  
+
+    filtered_file_name = f'filtered/{image.id}_{image.filterName}{os.path.splitext(file_name)[1]}'
+
+    default_storage.save(filtered_file_name, ContentFile(image_io.read()))
+
+    image.filteredFile = filtered_file_name
     image.save()
 
     modifiedImg.close()

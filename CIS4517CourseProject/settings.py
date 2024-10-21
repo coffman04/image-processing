@@ -15,6 +15,8 @@ from pathlib import Path
 from decouple import config
 from dotenv import load_dotenv
 from django.core.files.storage import default_storage
+from socket import gethostbyname
+from socket import gethostname
 
 load_dotenv()
 
@@ -42,8 +44,9 @@ STORAGES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '18.219.230.219', config('AWS_INSTANCE_DNS')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS.append(gethostbyname(gethostname()))
+print(ALLOWED_HOSTS)
 ROOT_URLCONF = 'CIS4517CourseProject.urls'
 
 # Quick-start development settings - unsuitable for production

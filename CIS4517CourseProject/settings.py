@@ -13,21 +13,33 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from dotenv import load_dotenv
+from django.core.files.storage import default_storage
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # for s3 storage
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "OPTIONS": {
+            "access_key": config('AWS_ACCESS_KEY'),
+            "secret_key": config('AWS_SECRET_KEY'),  
+            "bucket_name": config('AWS_BUCKET_NAME'),
+            "signature_version": 's3v4', 
+            "region_name": 'us-east-2', 
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+}
 
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = config('AWS_BUCKET_NAME')
-AWS_S3_SIGNATURE_NAME = 's3v4'
-AWS_S3_REGION_NAME = 'us-east-2'  # e.g., 'us-east-1'
-AWS_DEFAULT_ACL = None
-AWS_S3_VERIFY = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', config('AWS_BUCKET_NAME')]
+ROOT_URLCONF = 'CIS4517CourseProject.urls'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

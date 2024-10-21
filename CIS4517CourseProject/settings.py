@@ -38,7 +38,7 @@ STORAGES = {
     },
 }
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', config('AWS_BUCKET_NAME')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', config('AWS_INSTANCE_DNS')]
 ROOT_URLCONF = 'CIS4517CourseProject.urls'
 
 # Quick-start development settings - unsuitable for production

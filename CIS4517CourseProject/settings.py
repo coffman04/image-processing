@@ -33,9 +33,9 @@ STORAGES = {
             "region_name": 'us-east-2', 
         },
     },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
+    # "staticfiles": {
+    #     "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    # },
 }
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '18.219.230.219', config('AWS_INSTANCE_DNS')]

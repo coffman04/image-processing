@@ -3,13 +3,16 @@ import os
 import PIL
 import PIL.Image
 import PIL.ImageOps
+import boto3
 from PIL import Image, ImageFilter
 from django.shortcuts import redirect, render
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from CIS4517CourseProject import settings
 from CIS4517CourseProject.settings import MEDIA_ROOT
 from .forms import ImageUpload
 from .models import ImageList
+from decouple import config
 
 # Create your views here.
 def index (request):
@@ -74,5 +77,23 @@ def process(id):
 
 def download(request, image_id):
     image = ImageList.objects.get(id=image_id)
-    return render(request, 'app/download.html', {'image' : image})
+    s3 = boto3.client(
+        's3',
+        aws_access_key_id = config('AWS_ACCESS_KEY'),
+        aws_secret_access_key = config('AWS_SECRET_KEY'),
+        region_name = 'us-east-2'
+    )
+    presignedUrl = s3.generate_presigned_url(
+        'get_object',
+        Params={'Bucket': config('AWS_BUCKET_NAME'), 'Key': image.filteredFile.name},
+        ExpiresIn=3600
+    )
+
+    presignedDownload = s3.generate_presigned_url(
+        'get_object',
+        Params={'Bucket': config('AWS_BUCKET_NAME'), 'Key': image.filteredFile.name, 'ResponseContentDisposition': 'attachment'},
+        ExpiresIn=3600
+    )
+
+    return render(request, 'app/download.html', {'imageUrl' : presignedUrl, 'imageDownload':presignedDownload})
 

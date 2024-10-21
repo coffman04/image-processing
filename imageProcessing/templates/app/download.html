@@ -3,9 +3,9 @@
 
 <h1>Download Your Image Here</h1>
 <div class="buttonContainer">
-    <img src="{{ image.filteredFile.url }}" alt="filteredImage"/>
+    <img src="{{ imageUrl }}" alt="filteredImage"/>
 </div>
 <div class="buttonContainer">
-    <a class="downloadLink" href = "{{ image.filteredFile.url }}" download="{{ image.filteredFile.name }}">Download</a>
+    <a class="downloadLink" href = "{{ imageDownload }}" download>Download</a>
     <a class="downloadLink" href = "/">Home</a>
 </div> 

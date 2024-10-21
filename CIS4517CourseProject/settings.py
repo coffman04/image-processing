@@ -42,7 +42,8 @@ STORAGES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '18.219.230.219', config('AWS_INSTANCE_DNS')]
+ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '18.219.230.219', config('AWS_INSTANCE_DNS')]
 ROOT_URLCONF = 'CIS4517CourseProject.urls'
 
 # Quick-start development settings - unsuitable for production
